@@ -10,4 +10,10 @@ node{
    stage("Build Docker Image"){
        sh "docker build -t ankitvarshney081/spring-boot-mongo ."
    }
+   stage("Push Docker Image"){
+       withCredentials([string(credentialsId: 'Docker_credentials', variable: 'DOCKER_CREDENTIALS')]) {
+           sh "docker login -u ankitvarshney081 -p ${Docker_credentials}"
+       }
+       sh "docker push ankitvarshney081/spring-boot-mongo "
+   }
 }
