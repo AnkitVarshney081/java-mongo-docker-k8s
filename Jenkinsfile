@@ -7,4 +7,7 @@ node{
        def mavenCMD = "${mavenHOME}/bin/mvn "
        sh "${mavenCMD} clean package"
    }
+   stage("Build Docker Image"){
+       sh "docker build -t ankitvarshney081/spring-boot-mongo ."
+   }
 }
