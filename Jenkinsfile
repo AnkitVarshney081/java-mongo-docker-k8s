@@ -16,4 +16,11 @@ node{
        }
        sh "docker push ankitvarshney081/spring-boot-mongo "
    }
+   stage("Deploy Application in K8s Cluster"){
+       kubernetesDeploy(
+           configs: 'springBootMongo.yml',
+           kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+           enableConfigSubstitution: True
+         )
+   }
 }
